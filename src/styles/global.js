@@ -1,0 +1,37 @@
+import { createGlobalStyle } from "styled-components";
+
+export default createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
+    color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_300};
+
+    -webkit-font-smothing: antialiased;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  input, h1, textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  button, body, a {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  button, a {
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  button:hover, a:hover {
+    filter: brightness(0.9);
+  }
+`
