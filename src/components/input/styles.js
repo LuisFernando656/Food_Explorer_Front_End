@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   div {
     width: 100%;
+    height: 4.8rem;
     display: flex;
     align-items: center;
 
