@@ -15,14 +15,14 @@ export default createGlobalStyle`
     background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
     color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_300};
 
-    -webkit-font-smothing: antialiased;
+    font-size: 1.6rem;
   }
 
   a {
     text-decoration: none;
   }
 
-  input, h1, textarea {
+  input, h1, textarea, label {
     font-family: 'Roboto', sans-serif;
   }
 
