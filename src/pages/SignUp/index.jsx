@@ -1,11 +1,10 @@
 import { Container } from './styles'
+import { Logo } from '../../components/Logo'
 
 export function SignUp() {
   return (
     <Container>
-      <h1>
-        alal
-      </h1>
+      <Logo/>
     </Container>
   )
 }
