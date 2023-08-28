@@ -22,7 +22,7 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
-  input, h1, textarea, label {
+  input, h1, h2, textarea, label {
     font-family: 'Roboto', sans-serif;
   }
 
