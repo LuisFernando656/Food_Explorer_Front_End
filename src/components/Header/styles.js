@@ -11,6 +11,7 @@ export const Container = styled.header`
   padding: 6rem 0 2.4rem;
 
   position: fixed;
+  top: 0;
 
   z-index: 1;
 
