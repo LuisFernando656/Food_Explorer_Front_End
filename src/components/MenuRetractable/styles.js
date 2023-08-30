@@ -7,6 +7,8 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
+  z-index: 1;
+
   animation: slideAndFade 400ms;
 
   @keyframes slideAndFade {
@@ -21,11 +23,6 @@ export const Container = styled.div`
   }
 
   background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
-
-  >div:nth-child(3) {
-    position: fixed;
-    bottom: 0;
-  }
 `
 
 export const MenuHeader = styled.div`

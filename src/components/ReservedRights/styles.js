@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.footer`
   width: 100%;
   height: 7.7rem;
 
@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 2.4rem;
 
   background-color: ${({theme}) => theme.COLORS.DARK.DARK_600};

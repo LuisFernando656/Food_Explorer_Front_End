@@ -6,7 +6,7 @@ import { MenuRetractable } from '../MenuRetractable'
 
 import { useState } from 'react'
 
-export function Header({isAdmin=true}) {
+export function Header({isAdmin}) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () =>  {

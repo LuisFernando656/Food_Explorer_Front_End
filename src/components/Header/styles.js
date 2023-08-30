@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
   height: 11.4rem;
   
@@ -8,7 +8,11 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  padding: 5.6rem 0 2.4rem;
+  padding: 6rem 0 2.4rem;
+
+  position: fixed;
+
+  z-index: 1;
 
   background: ${({ theme }) => theme.COLORS.DARK.DARK_700};
 
@@ -23,17 +27,19 @@ export const Container = styled.div`
     }
   }
 
+  > button:nth-child(3) {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    img {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+  }
+
   > button {
     border: none;
     background: transparent;
-
-    width: 2rem;
-    height: 2rem;
-
-    img {
-      width: 2rem;
-      height: 2rem;
-    }
   }
 
   p {
@@ -42,16 +48,19 @@ export const Container = styled.div`
     line-height: 160%;
   }
 
-
+  footer {
+    position: fixed;
+    bottom: 0;
+  }
   `
 
 export const MenuButton = styled.button`
   color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
   width: 2.4rem;
-  height: 1.8rem;
+  height: 2rem;
   
   svg {
     width: 2.4rem;
-    height: 1.8rem;
+    height: 2.4rem;
   }
 ` 
