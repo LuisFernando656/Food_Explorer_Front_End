@@ -60,37 +60,9 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.TINTS.CAKE_200};
   }
-
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 1.4rem;
-    
-    span {
-      font-weight: 400;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    > button {
-      border: none;
-      background: transparent;
-
-      color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
-
-      width: 2.4rem;
-      height: 2.4rem;
-
-      svg {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
-    }
-
-  }
   
   > button:nth-child(6) {
+    margin-top: .4rem;
     padding: .6rem;
   }
 `

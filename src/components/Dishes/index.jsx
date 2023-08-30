@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { FiHeart, FiChevronRight } from 'react-icons/fi'
 import { PiPencilSimple } from 'react-icons/pi'
-import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai'
+import { Count } from "../Count";
 
 import testeImg from '../../assets/teste.svg'
 
@@ -25,11 +25,7 @@ export function Dishes({ data, isAdmin, ...rest}) {
       <h4>R$ {data.price}</h4>
 
       {isAdmin ? <></> : 
-      <div>
-        <button><AiOutlineMinus/></button>
-        <span>01</span>
-        <button><AiOutlinePlus/></button>
-      </div>
+      <Count/>
       }
 
       {isAdmin ? <></> : <Button title='incluir'/> }
