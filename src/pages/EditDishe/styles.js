@@ -17,6 +17,10 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 2.4rem;
 
+  button {
+    padding-inline: 2.4rem;
+  }
+
   h3 {
     font-size: 3.2rem;
     font-weight: 500;
@@ -129,6 +133,19 @@ export const Form = styled.form`
   > div:nth-child(7) {
     textarea {
       margin-top: 1.6rem;
+    }
+  }
+
+  > div:nth-child(8) {
+    display: flex;
+    gap: 3.2rem;
+
+    button:first-child {
+      background-color: ${({ theme }) => theme.COLORS.DARK.DARK_800};
+    }
+
+    button:nth-child(1) {
+      width: 33.85rem;
     }
   }
 `
