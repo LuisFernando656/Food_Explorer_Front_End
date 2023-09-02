@@ -1,10 +1,10 @@
 import { Container } from "./styles";
 import { FiChevronLeft } from 'react-icons/fi'
 
-export function BackLink() {
+export function BackLink({addres, ...rest}) {
   return (
-    <Container>
-      <a href="#">
+    <Container {...rest}>
+      <a href={addres}>
       <FiChevronLeft/>
       voltar
       </a>
