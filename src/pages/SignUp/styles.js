@@ -25,7 +25,7 @@ export const Container = styled.div`
 
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-evenly;
 
       > div:nth-child(1) {
         margin-bottom: 0;
