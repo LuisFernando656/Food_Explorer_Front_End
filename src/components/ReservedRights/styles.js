@@ -8,7 +8,8 @@ export const Container = styled.footer`
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-inline: 6%;
 
 
   background-color: ${({theme}) => theme.COLORS.DARK.DARK_600};
@@ -36,5 +37,6 @@ export const Container = styled.footer`
     color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_200};  
     font-size: 1.2rem;
 
+    white-space: nowrap;
   }
   `

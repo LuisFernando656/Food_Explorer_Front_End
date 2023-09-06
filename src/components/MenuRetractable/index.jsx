@@ -1,7 +1,6 @@
 import { Container, MenuHeader, MenuContent} from "./styles";
 import { FiX, FiSearch } from 'react-icons/fi'
 import { Input } from "../input";
-import { Logo } from '../Logo'
 import { ReservedRights } from '../ReservedRights'
 
 export function MenuRetractable({onClose, isAdmin}) {

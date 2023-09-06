@@ -5,23 +5,13 @@ import { Button } from '../../components/Button'
 
 import { useState, useEffect } from 'react'
 
+import { useResponsive } from '../../hooks/useResponsive'
+
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    function handleResize(){
-      setWindowWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  },[])
+  const { isDesktop } = useResponsive()
 
   function handleSubmit() {
     alert('vc clicou')
@@ -33,7 +23,7 @@ export function SignIn() {
         <Logo/>
         <Content>
           <Form>
-            {windowWidth > 768 && <h3>Faça login</h3>}
+            {isDesktop && <h3>Faça login</h3>}
             <Input 
             label="Email" 
             id='InputEmail' 

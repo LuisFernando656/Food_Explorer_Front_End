@@ -18,14 +18,22 @@ export const Container = styled.header`
   background: ${({ theme }) => theme.COLORS.DARK.DARK_700};
 
   > div:nth-child(2) {
+    
+    div {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      
+      h2 {
+        font-size: 2.1rem;
+      }
+    }
+
     svg {
       width: 2.4rem;
       height: 2.4rem;
     }
 
-    h2 {
-      font-size: 2.1rem;
-    }
   }
 
   > button:nth-child(3) {
@@ -41,12 +49,6 @@ export const Container = styled.header`
   > button {
     border: none;
     background: transparent;
-  }
-
-  p {
-    color: ${({ theme }) => theme.COLORS.TINTS.CAKE_200};
-    font-size: 1.2rem;
-    line-height: 160%;
   }
 
   footer {
