@@ -1,25 +1,29 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  width: 10rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   gap: 1.4rem;
 
-  input {
-    width: 2.4rem;
+  > div {
+    width: 1.5rem;
 
-    text-align: center;
+    input {
+      cursor: initial;
+      display: block;
 
-    border: none;
-    background: transparent;
-    outline: none;
+      border: none;
+      background: transparent;
+      outline: none;
 
-    color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_300};
-    font-size: 1.6rem;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
+      color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_300};
+      font-size: 1.6rem;
+      font-weight: 400;
+      font-family: 'Roboto', sans-serif;
+    }
   }
 
   > button {

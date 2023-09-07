@@ -28,7 +28,9 @@ export function Count() {
       <button onClick={handleSubValue}>
         <AiOutlineMinus/>
       </button>
-      <input type='number' value={formattedValue} readOnly/>
+      <div>
+        <input type='number' maxLength='2' value={formattedValue} readOnly/>
+      </div>
       <button onClick={handleSumValue}>
         <AiOutlinePlus/>
       </button>
