@@ -19,6 +19,7 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.COLORS.DARK.DARK_600};
 
   > div:first-child {
+    align-items: flex-start;
 
     > div {
       flex-direction: column;
@@ -36,8 +37,8 @@ export const Container = styled.div`
 
     
     svg {
-      min-width: 4.5rem;
-      min-height: 3.5rem;
+      width: 3rem;
+      height: 3rem;
     }
     
   }
