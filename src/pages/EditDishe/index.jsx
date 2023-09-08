@@ -1,5 +1,6 @@
 import { Container, Form } from "./styles";
 import { Header } from '../../components/Header'
+import { HeaderDesktop } from "../../components/HeaderDesktop";
 import { ReservedRights } from '../../components/ReservedRights'
 import { BackLink } from '../../components/BackLink'
 import { Input } from "../../components/input";
@@ -9,59 +10,66 @@ import { Button } from "../../components/Button"
 
 import { PiUploadSimple } from 'react-icons/pi'
 
+import { useResponsive } from '../../hooks/useResponsive'
 
 export function EditDishe(isAdmin=true) {
+  const {isDesktop} = useResponsive()
+
   return (
     <Container>
-      <Header isAdmin={isAdmin}/>
+      {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
 
       <main>
         <BackLink/>
 
         <Form>
-          <h3>Editar prato</h3>
-          
-          <label htmlFor="disheImage">
-            <span>imagem do prato</span>
-            <div>
-              <input
-               type="file" 
-               id='disheImage' 
-               />
-              <PiUploadSimple/>
-              <span>Selecione imagem para alterá-la</span>
-            </div>
-          </label>
-
-          <Input 
-          type='text' 
-          label='Nome' 
-          id='inputNome' 
-          placeholder='Value'
-          />
-          
-          <div>
-          <label htmlFor="selectCategory">Categoria</label>
-          <select name="Categoria" id="selectCategory">
-            <option value='1'>Pratos Principais</option>
-            <option value='2'>Refeições</option>
-            <option value='3'>Sobremesas</option>
-            <option value='4'>Bebidas</option>
-          </select>
-          </div>
+          <h3>Editar Prato</h3>
 
           <div>
-            <label htmlFor="ingredientInput">Ingredientes</label>
+            <label htmlFor="disheImage">
+              <span>imagem do prato</span>
+              <div>
+                <input
+                type="file" 
+                id='disheImage' 
+                />
+                <PiUploadSimple/>
+                <span>Selecione imagem</span>
+              </div>
+            </label>
+
+            <Input 
+            type='text' 
+            label='Nome' 
+            id='inputNome' 
+            placeholder='Value'
+            />
+            
             <div>
-              <IngredientItem isNew={false} value='Pão Naanmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm'/>
-              <IngredientItem isNew={false} value='Pão Naan'/>
-              <IngredientItem isNew={false} value='Pão Naan'/>
-              <IngredientItem isNew={false} value='Pão Naan'/>
-              <IngredientItem isNew={true} placeholder='Adicionar'/>
+            <label htmlFor="selectCategory">Categoria</label>
+            <select name="Categoria" id="selectCategory">
+              <option value='1'>Prato Principal</option>
+              <option value='2'>Refeição</option>
+              <option value='3'>Sobremesa</option>
+              <option value='4'>Bebida</option>
+            </select>
             </div>
           </div>
 
-          <Input label='Preço' id='priceInput' placeholder='R$ Value' type='number'/>
+          <div>
+            <div>
+              <label htmlFor="ingredientInput">Ingredientes</label>
+              <div>
+                <IngredientItem isNew={false} value='Pão Naanmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm'/>
+                <IngredientItem isNew={false} value='Pão Naan'/>
+                <IngredientItem isNew={false} value='Pão Naan'/>
+                <IngredientItem isNew={false} value='Pão Naan'/>
+                <IngredientItem isNew={true} placeholder='Adicionar'/>
+              </div>
+            </div>
+
+            <Input label='Preço' id='priceInput' placeholder='R$ 00,00' type='number'/>
+          </div>
 
           <div>
             <label htmlFor="textAreaInput">Descrição</label>

@@ -48,10 +48,10 @@ export function NewDishe(isAdmin=true) {
             <div>
             <label htmlFor="selectCategory">Categoria</label>
             <select name="Categoria" id="selectCategory">
-              <option value='1'>Pratos Principais</option>
-              <option value='2'>Refeições</option>
-              <option value='3'>Sobremesas</option>
-              <option value='4'>Bebidas</option>
+              <option value='1'>Prato Principal</option>
+              <option value='2'>Refeição</option>
+              <option value='3'>Sobremesa</option>
+              <option value='4'>Bebida</option>
             </select>
             </div>
           </div>
