@@ -126,8 +126,8 @@ export const Form = styled.form`
         border-radius: 0.5rem;
 
         svg {
-          width: 2.8rem;
-          height: 2.8rem;
+          min-width: 2.8rem;
+          min-height: 2.8rem;
         }
 
         input {

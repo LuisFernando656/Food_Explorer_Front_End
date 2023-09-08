@@ -46,7 +46,7 @@ export function SignIn() {
             onClick={handleSubmit}
             />
           </Form>
-          <a href="/">Criar uma conta</a>
+          <a href="/register">Criar uma conta</a>
         </Content>
       </main>
     </Container>
