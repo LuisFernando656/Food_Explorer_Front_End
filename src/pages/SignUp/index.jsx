@@ -3,6 +3,8 @@ import { Logo } from '../../components/Logo'
 import { Input } from '../../components/input'
 import { Button } from '../../components/Button'
 
+import { api } from '../../services/api'
+
 import { useState, useEffect } from 'react'
 
 import { useResponsive } from '../../hooks/useResponsive'
@@ -14,8 +16,21 @@ export function SignUp() {
   
   const { isDesktop } = useResponsive()
 
-  function handleSubmit() {
-    alert('vc clicou')
+  async function handleSignUp() {
+    if(!name || !email || !password) {
+      return alert('Preencha todos os campos!')
+    }
+
+    try{       
+      await api.post('/users', {name, email, password})
+    }catch(error){
+    if(error.response){
+      return alert(error.response.data.message)
+    }else{
+      return alert('Não foi possivel cadastrar')
+    }
+  }
+  alert('Usuário cadastrado com sucesso')
   }
 
   return (
@@ -50,7 +65,7 @@ export function SignUp() {
             <Button 
             type='button' 
             title='Criar conta' 
-            onClick={handleSubmit}
+            onClick={handleSignUp}
             />
           </Form>
           <a href="/">Já tenho uma conta</a>
