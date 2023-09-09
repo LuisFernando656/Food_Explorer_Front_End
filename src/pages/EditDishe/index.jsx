@@ -11,9 +11,12 @@ import { Button } from "../../components/Button"
 import { PiUploadSimple } from 'react-icons/pi'
 
 import { useResponsive } from '../../hooks/useResponsive'
+import { useAuth } from "../../hooks/auth";
 
-export function EditDishe(isAdmin=true) {
+export function EditDishe() {
   const {isDesktop} = useResponsive()
+  const { user } = useAuth()
+  const isAdmin = user.isAdmin
 
   return (
     <Container>

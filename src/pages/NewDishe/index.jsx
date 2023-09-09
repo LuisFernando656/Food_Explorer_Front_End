@@ -9,11 +9,14 @@ import { Textarea } from "../../components/TextArea";
 import { Button } from "../../components/Button"
 
 import { useResponsive } from "../../hooks/useResponsive";
+import { useAuth } from "../../hooks/auth";
 
 import { PiUploadSimple } from 'react-icons/pi'
 
-export function NewDishe(isAdmin=true) {
+export function NewDishe() {
   const {isDesktop} = useResponsive()
+  const { user } = useAuth()
+  const isAdmin = user.isAdmin
 
   return (
     <Container>

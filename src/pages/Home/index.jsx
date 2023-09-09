@@ -8,12 +8,15 @@ import { Dishes } from "../../components/Dishes";
 import { useState, useEffect } from "react";
 
 import { useResponsive } from "../../hooks/useResponsive";
+import { useAuth } from "../../hooks/auth";
 
 import introImageMobile from '../../assets/introImageMobile.png'
 import introImageDesktop from '../../assets/IntroImageDesktop.png'
 
-export function Home({isAdmin=false, data}) {
+export function Home({ data}) {
   const { isDesktop } = useResponsive()
+  const { user } = useAuth()
+  const isAdmin = user.isAdmin
   
   const disheData = {
     name: 'Salada Ravanello',
@@ -36,7 +39,7 @@ export function Home({isAdmin=false, data}) {
         
         <div>
           <FoodSection data={data={category_id: 'Refeições'}}>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
+            <Dishes isAdmin={isAdmin} data={disheData} />
             <Dishes isAdmin={isAdmin} data={disheData}/>
             <Dishes isAdmin={isAdmin} data={disheData}/>
             <Dishes isAdmin={isAdmin} data={disheData}/>

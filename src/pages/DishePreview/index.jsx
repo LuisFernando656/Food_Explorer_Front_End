@@ -10,11 +10,14 @@ import { Count } from "../../components/Count";
 import { PiReceipt } from 'react-icons/pi'
 
 import {useResponsive} from '../../hooks/useResponsive'
+import { useAuth } from "../../hooks/auth";
 
 import testeImg from '../../assets/teste.svg'
 
-export function DishePreview({isAdmin=true}) {
+export function DishePreview() {
   const {isDesktop} = useResponsive()
+  const { user } = useAuth()
+  const isAdmin = user.isAdmin
 
   function formattedValueBRL(num) {
     return new Intl.NumberFormat('pt-BR', {
@@ -36,7 +39,7 @@ export function DishePreview({isAdmin=true}) {
     <Container>
       {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
       <main>
-        <BackLink/>
+        <BackLink addres='/'/>
         {data &&
         <Content>
           <div>
