@@ -6,15 +6,17 @@ import { Button } from '../../components/Button'
 import { useState, useEffect } from 'react'
 
 import { useResponsive } from '../../hooks/useResponsive'
+import { useAuth } from '../../hooks/auth'
 
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  
+  const { signIn } = useAuth()
   const { isDesktop } = useResponsive()
 
-  function handleSubmit() {
-    alert('vc clicou')
+  function handleSignIn() {
+    signIn({ email, password})
   }
 
   return (
@@ -28,7 +30,6 @@ export function SignIn() {
             label="Email" 
             id='InputEmail' 
             type='email' 
-            pattern=".+@.+\.com\.br" 
             placeholder='Exemplo: exemplo@exemplo.com.br'
             onChange={e => setEmail(e.target.value)}
             />
@@ -43,7 +44,7 @@ export function SignIn() {
             <Button 
             type='button' 
             title='Entrar' 
-            onClick={handleSubmit}
+            onClick={handleSignIn}
             />
           </Form>
           <a href="/register">Criar uma conta</a>

@@ -2,6 +2,7 @@ import { Container, Form, Content } from './styles'
 import { Logo } from '../../components/Logo'
 import { Input } from '../../components/input'
 import { Button } from '../../components/Button'
+import { useNavigate } from 'react-router-dom'
 
 import { api } from '../../services/api'
 
@@ -14,6 +15,7 @@ export function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
+  const navigate = useNavigate()
   const { isDesktop } = useResponsive()
 
   async function handleSignUp() {
@@ -31,6 +33,7 @@ export function SignUp() {
     }
   }
   alert('Usuário cadastrado com sucesso')
+  navigate('/')
   }
 
   return (
