@@ -9,21 +9,17 @@ import { AdminRoutes } from "./admin.routes";
 export function Routes(){
   const { user } = useAuth()
 
+  function AccessRoute() {
+    if(user.isAdmin) {
+      return <AdminRoutes/>
+    }else{
+      return <AppRoutes/>
+    }
+  }
+
   return (
     <BrowserRouter>
-      {user ? (
-        user.isAdmin ? (
-          <>
-            <AppRoutes/>
-            <AdminRoutes/>
-          </>
-        ) : (
-          <AppRoutes/>
-        )
-      ) : (
-        <AuthRoutes/>
-      )
-      }
+      {user ? <AccessRoute/> : <AuthRoutes/>}
     </BrowserRouter>
   )
 }
