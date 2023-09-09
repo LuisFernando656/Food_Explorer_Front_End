@@ -3,7 +3,11 @@ import { FiX, FiSearch } from 'react-icons/fi'
 import { Input } from "../input";
 import { ReservedRights } from '../ReservedRights'
 
+import { useAuth } from "../../hooks/auth";
+
 export function MenuRetractable({onClose, isAdmin}) {
+  const {signOut} = useAuth()
+
   return (
     <Container>
       <MenuHeader>
@@ -16,7 +20,7 @@ export function MenuRetractable({onClose, isAdmin}) {
         <Input type="search" placeholder='Busque por pratos ou ingredientes' icon={FiSearch} />
         <div>
         {isAdmin ? <a href="#">Novo Prato</a> : null}
-        <a href="#">Sair</a>
+        <button onClick={signOut}>Sair</button>
         </div>
       </MenuContent>
       <ReservedRights/>

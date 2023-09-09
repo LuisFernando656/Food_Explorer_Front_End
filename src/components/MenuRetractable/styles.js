@@ -74,13 +74,22 @@ export const MenuContent = styled.div`
 
     margin-top: 3.6rem;
 
-    a {
+    a, button {
       padding: 1rem;
 
       font-size: 2.4rem;
       font-weight: 300;
       color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_300};
       line-height: 140%;
+
+      border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK.DARK_1000};
+    }
+
+    > button {
+      border: none;
+      background: none;
+
+      display: flex;
 
       border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK.DARK_1000};
     }

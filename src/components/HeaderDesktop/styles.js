@@ -72,9 +72,16 @@ export const Container = styled.div`
     }
   }
 
-  > a {
+  > button:last-child {
     width: 3.2rem;
     height: 3.2rem;
+
+    border: none;
+    background: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
 
