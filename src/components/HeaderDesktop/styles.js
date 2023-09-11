@@ -20,6 +20,7 @@ export const Container = styled.div`
 
   > div:first-child {
     align-items: flex-start;
+    cursor: pointer;
 
     > div {
       flex-direction: column;

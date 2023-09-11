@@ -7,21 +7,36 @@ import { Dishes } from "../../components/Dishes";
 
 import { useState, useEffect } from "react";
 
+import { api } from '../../services/api'
+
 import { useResponsive } from "../../hooks/useResponsive";
 import { useAuth } from "../../hooks/auth";
 
 import introImageMobile from '../../assets/introImageMobile.png'
 import introImageDesktop from '../../assets/IntroImageDesktop.png'
 
-export function Home({ data}) {
+export function Home( data) {
+  const [dishes, setDishes] = useState([])
+  const [categorys, setCategorys] = useState([])
+
   const { isDesktop } = useResponsive()
   const { user } = useAuth()
   const isAdmin = user.isAdmin
   
-  const disheData = {
-    name: 'Salada Ravanello',
-    price: '49,97'
-  }
+  useEffect(() => {
+    async function fetchDishes() {
+      const response = await api.get(`/dishes?name=${''}`)
+      setDishes(response.data)
+    }
+
+    async function fetchCategory() {
+      const response = await api.get('/category')
+      setCategorys(response.data)
+    }
+
+    fetchDishes()
+    fetchCategory()
+  },[])
 
   return (
     <Container>
@@ -38,38 +53,23 @@ export function Home({ data}) {
         </IntroDescription>
         
         <div>
-          <FoodSection data={data={category_id: 'Refeições'}}>
-            <Dishes isAdmin={isAdmin} data={disheData} />
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-          </FoodSection>
-          <FoodSection data={data={category_id: 'Refeições'}}>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
+          {
+            categorys.map(category => {
+              const categoryDishes = dishes.filter(dishe => dishe.category_id === category.id) 
 
-          </FoodSection>
-
-          <FoodSection data={data={category_id: 'Refeições'}}>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-          </FoodSection>
-          <FoodSection data={data={category_id: 'Refeições'}}>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-            <Dishes isAdmin={isAdmin} data={disheData}/>
-          </FoodSection>
+              if(categoryDishes.length > 0) {
+                return (
+                <FoodSection data={category} key={String(category.id)}>
+                  {
+                    categoryDishes.map(dishe => (
+                      <Dishes data={dishe} isAdmin={isAdmin} key={String(dishe.id)}/>
+                    ))
+                  }
+                </FoodSection>
+                )
+              }
+            })
+          }
         </div>
       </main>
 

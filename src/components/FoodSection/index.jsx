@@ -9,7 +9,7 @@ export function FoodSection({data, children}) {
 
   return (
     <Container>
-      <h3>{data.category_id}</h3>
+      <h3>{data.name}</h3>
       <div>
       {isDesktop && <div>
         <button>

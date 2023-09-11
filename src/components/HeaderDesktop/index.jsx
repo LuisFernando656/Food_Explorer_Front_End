@@ -23,11 +23,19 @@ export function HeaderDesktop({isAdmin}) {
     }
   }
 
+  function handleNavNew() {
+    navigate('/new')
+  }
+
+  function handleNavHome() {
+    navigate('/')
+  }
+
   return (
     <Container>
-      <Logo isAdmin={isAdmin}/>
+      <Logo isAdmin={isAdmin} onClick={handleNavHome}/>
       <Input icon={FiSearch} placeholder='Busque por pratos ou ingredientes'/>
-      {isAdmin? <Button title='Novo prato'/>  : <Button icon={PiReceipt} title='Pedidos (0)'/>}
+      {isAdmin? <Button onClick={handleNavNew} title='Novo prato'/>  : <Button icon={PiReceipt} title='Pedidos (0)'/>}
       <button onClick={handleLogOut}><FiLogOut/></button>
     </Container>
   )

@@ -25,7 +25,7 @@ export function Dishes({ data, isAdmin, ...rest}) {
         {data.name} &nbsp; &#x276F;
       </h3>
 
-      {isDesktop && <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim</p>}
+      {isDesktop && <p>{data.description}</p>}
 
       <h4>R$ {data.price}</h4>
 

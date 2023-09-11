@@ -10,6 +10,8 @@ import { Button } from "../../components/Button"
 
 import { PiUploadSimple } from 'react-icons/pi'
 
+import { useNavigate } from "react-router-dom";
+
 import { useResponsive } from '../../hooks/useResponsive'
 import { useAuth } from "../../hooks/auth";
 
@@ -18,12 +20,18 @@ export function EditDishe() {
   const { user } = useAuth()
   const isAdmin = user.isAdmin
 
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate(-1)
+  }
+
   return (
     <Container>
       {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
 
       <main>
-        <BackLink/>
+        <BackLink onClick={handleBack}/>
 
         <Form>
           <h3>Editar Prato</h3>

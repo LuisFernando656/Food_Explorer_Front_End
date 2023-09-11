@@ -11,6 +11,8 @@ import { Button } from "../../components/Button"
 import { useResponsive } from "../../hooks/useResponsive";
 import { useAuth } from "../../hooks/auth";
 
+import { useNavigate } from "react-router-dom";
+
 import { PiUploadSimple } from 'react-icons/pi'
 
 export function NewDishe() {
@@ -18,12 +20,18 @@ export function NewDishe() {
   const { user } = useAuth()
   const isAdmin = user.isAdmin
 
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate(-1)
+  }
+
   return (
     <Container>
       {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
 
       <main>
-        <BackLink/>
+        <BackLink onClick={handleBack}/>
 
         <Form>
           {isDesktop? <h3>Adicionar Prato</h3>  : <h3>Novo prato</h3>}
