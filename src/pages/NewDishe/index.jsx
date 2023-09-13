@@ -29,6 +29,7 @@ export function NewDishe() {
   const [description, setDescription] = useState('')
   const [buttonActive, setButtonActive] = useState(true)
   const [names, setNames] = useState([])
+  const [prefix, setPrefix] = useState('')
   
   const { isDesktop } = useResponsive()
   const { user } = useAuth()
@@ -105,6 +106,17 @@ export function NewDishe() {
     
     fetchNames()
   },[])
+
+  useEffect(() => {
+    function PrefixChange() {
+      if(!price) {
+        setPrice(0)
+        setPrefix('')
+      }
+    }
+
+    PrefixChange() 
+  },[price])
   
   useEffect(() => {
     if(
@@ -191,9 +203,9 @@ export function NewDishe() {
             label='Preço' 
             id='priceInput' 
             placeholder='R$ 00,00' 
-            step=".01"
             type='text'
-            onKeyUp={(e) => currencyMask(e.target, setPrice)}
+            prefix={prefix}
+            onKeyUp={(e) => currencyMask(e.target, setPrice, setPrefix)}
             />
           </div>
 

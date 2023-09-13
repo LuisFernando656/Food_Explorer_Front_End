@@ -18,6 +18,10 @@ export const Container = styled.div`
     
     background: ${({theme}) => theme.COLORS.DARK.DARK_900};
     border-radius: .5rem;
+
+    span {
+      color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_400};
+    }
    
     svg {
       margin-right: 1.4rem;
