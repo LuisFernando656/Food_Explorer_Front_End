@@ -24,7 +24,7 @@ export function SignIn() {
       <main>
         <Logo/>
         <Content>
-          <Form>
+         <Form onSubmit={(e) => e.preventDefault()}>
             {isDesktop && <h3>Faça login</h3>}
             <Input 
             label="Email" 

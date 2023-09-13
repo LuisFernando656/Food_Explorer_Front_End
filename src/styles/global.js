@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
    :root {
@@ -12,8 +12,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
-    color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_300};
+    background-color: ${({ theme }) => theme.COLORS.DARK.DARK_400};
+    color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_300};
 
     font-size: 1.6rem;
   }
@@ -24,6 +24,12 @@ export default createGlobalStyle`
 
   input, h1, h2, textarea, label, select {
     font-family: 'Roboto', sans-serif;
+  }
+
+    
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 10px #0D1D25 inset !important;
+    -webkit-text-fill-color: #C4C4CC !important;
   }
 
   button, body, a {

@@ -2,20 +2,19 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 16.6rem;
-  height: 3.2rem;
+  height: 4rem;
 
   display: flex;
   align-items: center;
   gap: .8rem;
 
-  background-color: ${({ theme, isNew }) => isNew ? 'transparent' : theme.COLORS.LIGHT.LIGHT_600};
+  background-color: ${({ theme, $isNew }) => $isNew ? 'transparent' : theme.COLORS.LIGHT.LIGHT_600};
   color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_500};
 
-  border: ${({ theme, isNew }) => isNew ? `2px dashed ${theme.COLORS.LIGHT.LIGHT_500}` : 'none'};
+  border: ${({ theme, $isNew }) => $isNew ? `2px dashed ${theme.COLORS.LIGHT.LIGHT_500}` : 'none'};
 
   border-radius: .8rem;
   padding: 1.2rem 1.6rem;
- 
 
   > button {
     border: none;
@@ -31,12 +30,15 @@ export const Container = styled.div`
   }
 
   .button-add, .button-delete {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.4rem;
+    height: 1.4rem;
+
+    display: flex;
+    align-items: center;
 
     svg {
-      width: 1.8rem;
-      height: 1.8rem;
+      width: 1.4rem;
+    height: 1.4rem;
     }
 
   }

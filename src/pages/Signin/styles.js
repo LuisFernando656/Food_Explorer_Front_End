@@ -76,14 +76,7 @@ export const Form = styled.form`
 
   label {
     padding-bottom: 0.8rem;
-  }
-
-  > div:nth-child(1), div:nth-child(2) {
-      input:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 10px #0D1D25 inset !important;
-        -webkit-text-fill-color: #C4C4CC !important;
-      }
-  }
+  }  
 `
 
 export const Content = styled.div`

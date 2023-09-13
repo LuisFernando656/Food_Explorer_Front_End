@@ -4,7 +4,7 @@ import { Container } from './styles'
 
 export function IngredientItem({ isNew, value, onClick, ...rest}){
   return(
-    <Container isNew={isNew}>
+    <Container $isNew={isNew}>
       <input 
       type="text" 
       value={value} 

@@ -41,7 +41,7 @@ export function SignUp() {
       <main>
         <Logo/>
         <Content>
-          <Form>
+          <Form onSubmit={(e) => e.preventDefault()}>
             {isDesktop && <h3>Crie sua conta</h3>}
             <Input 
             label="Seu nome" 

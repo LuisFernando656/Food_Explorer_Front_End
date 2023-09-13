@@ -40,6 +40,7 @@ export const Container = styled.div`
   }
 
   img {
+    border-radius: 50%;
     height: 8.8rem;
     width: 8.8rem;
   }
@@ -47,6 +48,7 @@ export const Container = styled.div`
   > h3 {
     display: flex;
     align-items: center;
+    justify-content: center;
 
     font-size: 1.4rem;
     font-weight: 500;

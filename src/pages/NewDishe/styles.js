@@ -11,6 +11,11 @@ export const Container = styled.div`
 
     flex-grow: 1;
 
+    input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 10px #0D161B inset !important;
+    -webkit-text-fill-color: #C4C4CC !important;
+    }
+
     div:nth-child(1) {
       a {
         margin-bottom: 2.4rem;

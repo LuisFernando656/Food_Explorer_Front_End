@@ -4,6 +4,7 @@ import { PiPencilSimple } from 'react-icons/pi'
 import { Count } from "../Count";
 
 import testeImg from '../../assets/teste.svg'
+import { api } from "../../services/api";
 
 import {useResponsive} from '../../hooks/useResponsive'
 
@@ -12,14 +13,19 @@ import { Button } from '../../components/Button'
 export function Dishes({ data, isAdmin, ...rest}) {
   const {isDesktop} = useResponsive()
 
+  const ImageURL = `${api.defaults.baseURL}/files/${data.image}`
+
   return (
     <Container {...rest}>
       {isAdmin ? <button><PiPencilSimple/></button> : <button><FiHeart/></button>}
      
+     <div>
       <img
-       src={testeImg} 
+       src={ImageURL} 
        alt="Imagem do prato" 
        />
+
+     </div>
 
       <h3>
         {data.name} &nbsp; &#x276F;

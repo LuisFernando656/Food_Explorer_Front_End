@@ -11,6 +11,11 @@ export const Container = styled.div`
 
     flex-grow: 1;
 
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 10px #0d161b inset !important;
+      -webkit-text-fill-color: #c4c4cc !important;
+    }
+
     div:nth-child(1) {
       a {
         margin-bottom: 2.4rem;
@@ -32,7 +37,7 @@ export const Container = styled.div`
       }
 
       > form {
-        gap:3.2rem;
+        gap: 3.2rem;
 
         > div:nth-child(2) {
           width: 100%;
@@ -47,12 +52,11 @@ export const Container = styled.div`
             width: 43%;
           }
 
-          >div:nth-child(3) {
+          > div:nth-child(3) {
             width: 30%;
             select {
               background-color: ${({ theme }) => theme.COLORS.DARK.DARK_800};
             }
-
           }
         }
 
@@ -75,7 +79,7 @@ export const Container = styled.div`
 
           padding: 1.2rem 2.4rem;
         }
-      } 
+      }
     }
   }
 `
@@ -101,7 +105,6 @@ export const Form = styled.form`
     gap: 2.4rem;
 
     > label {
-      
       > span {
         color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_400};
       }
@@ -178,7 +181,7 @@ export const Form = styled.form`
     }
   }
 
-  >div:nth-child(3) {
+  > div:nth-child(3) {
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
@@ -186,25 +189,25 @@ export const Form = styled.form`
       display: flex;
       flex-direction: column;
       gap: 1.6rem;
-  
+
       > div {
         display: flex;
         flex-wrap: wrap;
         gap: 1.6rem;
         margin: 0;
         padding: 0.8rem;
-  
+
         background-color: ${({ theme }) => theme.COLORS.DARK.DARK_800};
         border-radius: 0.5rem;
       }
     }
-  
+
     > div:nth-child(2) {
       div {
         background: ${({ theme }) => theme.COLORS.DARK.DARK_800};
-  
+
         margin-top: 1.6rem;
-  
+
         input::-webkit-inner-spin-button,
         input::-webkit-outer-spin-button {
           -webkit-appearance: none;
@@ -213,7 +216,6 @@ export const Form = styled.form`
       }
     }
   }
-
 
   > div:nth-child(4) {
     textarea {

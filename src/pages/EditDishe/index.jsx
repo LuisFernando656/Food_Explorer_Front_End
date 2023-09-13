@@ -33,7 +33,7 @@ export function EditDishe() {
       <main>
         <BackLink onClick={handleBack}/>
 
-        <Form>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <h3>Editar Prato</h3>
 
           <div>
