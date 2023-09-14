@@ -9,11 +9,25 @@ import { api } from "../../services/api";
 import {useResponsive} from '../../hooks/useResponsive'
 
 import { Button } from '../../components/Button'
+import { useEffect } from "react";
 
 export function Dishes({ data, isAdmin, ...rest}) {
   const {isDesktop} = useResponsive()
 
   const ImageURL = `${api.defaults.baseURL}/files/${data.image}`
+  const priceBD = data.price
+  let formattedPrice = 0
+  
+  function priceFormat() {
+    formattedPrice = priceBD.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+
+    return formattedPrice
+  }
+
+  priceFormat()
 
   return (
     <Container {...rest}>
@@ -33,7 +47,7 @@ export function Dishes({ data, isAdmin, ...rest}) {
 
       {isDesktop && <p>{data.description}</p>}
 
-      <h4>R$ {data.price}</h4>
+      <h4>{formattedPrice}</h4>
 
       <div>
         {isAdmin ? <></> : 

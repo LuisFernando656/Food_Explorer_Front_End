@@ -38,8 +38,26 @@ export const Container = styled.section`
       font-size: 3.2rem;
     }
 
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .div-button-left {
+      animation: slideIn 0.3s ease-in-out; /* Animação de entrada */
+    }
+
+    .div-button-right {
+      animation: slideIn 0.3s ease-in-out; /* Animação de entrada */
+    }
+
     > div {
-      > div:nth-child(1), > div:nth-child(2) {
+      > .div-button-left,
+      > .div-button-right {
         width: min(20%, 27.7rem);
 
         display: flex;
@@ -52,15 +70,18 @@ export const Container = styled.section`
         right: auto;
         bottom: 0;
 
-        z-index: 1;
+        z-index: 2;
+        pointer-events: none;
 
         background: ${({ theme }) => theme.COLORS.GRADIENT.GRADIENT_101};
 
-        
-        button {
+        > button {
+          transition: all 600ms ease-in-out;
+          width: 8rem;
           background: transparent;
           border: none;
           height: 100%;
+          pointer-events: auto;
         }
 
         svg {
@@ -70,12 +91,24 @@ export const Container = styled.section`
         }
       }
 
-      > div:nth-child(2) {
+      > .div-button-right {
         justify-content: right;
 
         right: -2px;
         left: auto;
         background: ${({ theme }) => theme.COLORS.GRADIENT.GRADIENT_100};
+      }
+
+      > div:nth-child(1) {
+        user-select: none;
+        > div {
+          > div {
+            > div {
+              max-width: 30.4rem;
+              min-height: auto;
+            }
+          }
+        }
       }
     }
   }

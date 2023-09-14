@@ -20,6 +20,10 @@ export function MenuRetractable({onClose, isAdmin}) {
     }
   }
 
+  function handleNewDishe() {
+    navigate('/new')
+  }
+
   return (
     <Container>
       <MenuHeader>
@@ -31,7 +35,7 @@ export function MenuRetractable({onClose, isAdmin}) {
       <MenuContent>
         <Input type="search" placeholder='Busque por pratos ou ingredientes' icon={FiSearch} />
         <div>
-        {isAdmin ? <a href="#">Novo Prato</a> : null}
+        {isAdmin ? <button onClick={handleNewDishe}>Novo Prato</button> : null}
         <button onClick={handleLogOut}>Sair</button>
         </div>
       </MenuContent>

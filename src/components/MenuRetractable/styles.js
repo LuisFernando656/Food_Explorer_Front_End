@@ -74,7 +74,7 @@ export const MenuContent = styled.div`
 
     margin-top: 3.6rem;
 
-    a, button {
+    button {
       padding: 1rem;
 
       font-size: 2.4rem;

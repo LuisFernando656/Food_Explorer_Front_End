@@ -7,6 +7,10 @@ import { Dishes } from "../../components/Dishes";
 
 import { useState, useEffect } from "react";
 
+import { SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+
 import { api } from '../../services/api'
 
 import { useResponsive } from "../../hooks/useResponsive";
@@ -59,12 +63,18 @@ export function Home( data) {
 
               if(categoryDishes.length > 0) {
                 return (
-                <FoodSection data={category} key={String(category.id)}>
-                  {
+                <FoodSection data={category} dishes={categoryDishes} key={String(category.id)}>
+                  {isDesktop ? (
                     categoryDishes.map(dishe => (
+                    <SwiperSlide key={String(dishe.id)}> 
+                        <Dishes data={dishe} isAdmin={isAdmin} key={String(dishe.id)}/>
+                    </SwiperSlide>
+                    ))
+                    ) : (  
+                      categoryDishes.map(dishe => (
                       <Dishes data={dishe} isAdmin={isAdmin} key={String(dishe.id)}/>
                     ))
-                  }
+                    )}
                 </FoodSection>
                 )
               }

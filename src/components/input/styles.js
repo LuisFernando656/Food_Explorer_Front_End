@@ -21,6 +21,7 @@ export const Container = styled.div`
 
     span {
       color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_400};
+      margin-right: .4rem;
     }
    
     svg {
