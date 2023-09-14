@@ -62,15 +62,15 @@ export function FoodSection({data, children}) {
          : <div>{children}</div> }
         </div>
 
-        {isDesktop && buttonLeft && (
-          <div className="div-button-left">
+        {isDesktop && (
+          <div className={`div-button-left ${buttonLeft ? 'active' : ''}`}> 
             <button onClick={handleSlidePrev}>
               <FiChevronLeft />
             </button>
           </div>
         )}
-        {isDesktop && buttonRight && (
-          <div className="div-button-right"> 
+        {isDesktop && (
+          <div className={`div-button-right ${buttonRight ? 'active' : ''}`}> 
             <button onClick={handleSlideNext}>
               <FiChevronRight />
             </button>

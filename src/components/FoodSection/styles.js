@@ -38,21 +38,20 @@ export const Container = styled.section`
       font-size: 3.2rem;
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
+    .div-button-left.active {
+      opacity: 1;
+
+      > button {
+        pointer-events: auto;
       }
     }
 
-    .div-button-left {
-      animation: slideIn 0.3s ease-in-out; /* Animação de entrada */
-    }
+    .div-button-right.active {
+      opacity: 1;
 
-    .div-button-right {
-      animation: slideIn 0.3s ease-in-out; /* Animação de entrada */
+      > button {
+        pointer-events: auto;
+      }
     }
 
     > div {
@@ -72,6 +71,9 @@ export const Container = styled.section`
 
         z-index: 2;
         pointer-events: none;
+        transition: opacity 0.3s ease;
+
+        opacity: 0;
 
         background: ${({ theme }) => theme.COLORS.GRADIENT.GRADIENT_101};
 
@@ -81,7 +83,7 @@ export const Container = styled.section`
           background: transparent;
           border: none;
           height: 100%;
-          pointer-events: auto;
+          pointer-events: none;
         }
 
         svg {
