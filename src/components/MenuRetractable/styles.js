@@ -1,28 +1,23 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  .menu-retractable {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    
+    z-index: 1;
 
-  z-index: 1;
+    transition: left 0.3s ease;
 
-  animation: slideAndFade 400ms;
-
-  @keyframes slideAndFade {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+    background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
   }
 
-  background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
+  .menu-retractable.open {
+  left: 0; /* Quando o menu estiver aberto, ele será trazido para a posição left: 0 */
+}
 `
 
 export const MenuHeader = styled.div`

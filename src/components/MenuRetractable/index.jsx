@@ -5,9 +5,11 @@ import { ReservedRights } from '../ReservedRights'
 
 import { useNavigate } from "react-router-dom";
 
+import { useEffect } from "react";
+
 import { useAuth } from "../../hooks/auth";
 
-export function MenuRetractable({onClose, isAdmin}) {
+export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
   const {signOut} = useAuth()
   const navigate = useNavigate()
 
@@ -20,26 +22,40 @@ export function MenuRetractable({onClose, isAdmin}) {
     }
   }
 
+  function handleMenuOpen() {
+    setMenuOpen(false)
+  }
+
   function handleNewDishe() {
     navigate('/new')
   }
 
+  useEffect(() => {
+    if (!menuOpen) {
+      document.body.classList.remove("menu-open");
+    } else {
+      document.body.classList.add("menu-open");
+    }
+  }, [menuOpen]);
+
   return (
     <Container>
-      <MenuHeader>
-        <button onClick={onClose}>
-          <FiX/>
-        </button>
-        <h2>Menu</h2>
-      </MenuHeader>
-      <MenuContent>
-        <Input type="search" placeholder='Busque por pratos ou ingredientes' icon={FiSearch} />
-        <div>
-        {isAdmin ? <button onClick={handleNewDishe}>Novo Prato</button> : null}
-        <button onClick={handleLogOut}>Sair</button>
-        </div>
-      </MenuContent>
-      <ReservedRights/>
+      <div className={`menu-retractable ${menuOpen ? "open" : ""}`}>
+        <MenuHeader>
+          <button onClick={() => handleMenuOpen()}>
+            <FiX/>
+          </button>
+          <h2>Menu</h2>
+        </MenuHeader>
+        <MenuContent>
+          <Input type="search" placeholder='Busque por pratos ou ingredientes' icon={FiSearch} />
+          <div>
+          {isAdmin ? <button onClick={handleNewDishe}>Novo Prato</button> : null}
+          <button onClick={handleLogOut}>Sair</button>
+          </div>
+        </MenuContent>
+        <ReservedRights/>
+      </div>
     </Container>
   )
 }

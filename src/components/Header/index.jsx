@@ -10,11 +10,7 @@ export function Header({isAdmin}) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () =>  {
-    setMenuOpen(true)
-  }
-
-  const closeMenu = () => {
-    setMenuOpen(false)
+    setMenuOpen(!menuOpen)
   }
 
   return (
@@ -26,7 +22,7 @@ export function Header({isAdmin}) {
     <Logo isAdmin={isAdmin}/>
     
     {isAdmin ? <div></div> :  <button>  <img src={Requestsicon} alt="Icone de Pedidos" /> </button>} 
-    {menuOpen ? <MenuRetractable isAdmin={isAdmin} menuOpen={menuOpen} onClose={closeMenu}/>: null}
+    <MenuRetractable isAdmin={isAdmin} setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>
    </Container>
   )
 }
