@@ -19,7 +19,7 @@ import { useState, useEffect } from "react";
 
 import { PiUploadSimple } from 'react-icons/pi'
 
-export function NewDishe() {
+export function NewDish() {
   const [dishImage, setDishImage] = useState(null)
   const [name, setName] = useState('')
   const [category, setCategory] = useState(1)

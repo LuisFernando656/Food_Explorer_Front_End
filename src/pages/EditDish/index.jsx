@@ -20,7 +20,7 @@ import { useAuth } from "../../hooks/auth";
 import { currencyMask } from "../../hooks/useCurrencyMask";
 import { useFetchDish } from '../../hooks/useFetchDish';
 
-export function EditDishe() {
+export function EditDish() {
   const [prefix, setPrefix] = useState('')
   const [dishImage, setDishImage] = useState(null)
   const [name, setName] = useState('')
@@ -69,9 +69,19 @@ export function EditDishe() {
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
   }
+
+  async function handleDeleteDish() {
+    await api.delete(`/dishes/${params.id}`)
+    alert('Prato excluido')
+    navigate('/')
+  }
   
   async function handleUpdateDish() {
     try{
+      if(newIngredient) {
+        return alert('Você deixou uma ingrediente sem confirmar')
+      }
+
       if(dishImage) {
         const formDataImage = new FormData();
         formDataImage.append('image', dishImage); 
@@ -79,21 +89,29 @@ export function EditDishe() {
         await api.patch(`/dishes/image/${params.id}`, formDataImage)
       }
 
-      const unformattedPrice = parseFloat(price.replace(/[^0-9,.-]/g, '').replace(',', '.'))
+      if(name && price && category && description){
 
-      const formattedIngredients = ingredients.map(ingredient => ingredient.name)
-      const updated = {
-        name,
-        category_id: category,
-        price: unformattedPrice,
-        description,
-        ingredients: formattedIngredients
+        const unformattedPrice = parseFloat(price.replace(/[^0-9,.-]/g, '').replace(',', '.'))
+  
+        const formattedIngredients = ingredients.map(ingredient => ingredient.name)
+  
+        const updated = {
+          name,
+          category_id: category,
+          price: unformattedPrice,
+          description,
+          ingredients: formattedIngredients
+        }
+
+        const dishUpdated = updated
+        
+        await api.put(`/dishes/${params.id}`, dishUpdated)
+        
+        alert('Prato atualizado')
+        navigate('/')
+      }else{
+        return alert('Faltam itens no prato')
       }
-      
-      const dishUpdated = Object.assign(dishData, updated)
-      
-      await api.put(`/dishes/${params.id}`, dishUpdated)
-      
     }catch(error){
       if(error.response){
         return alert(error.response.data.message)
@@ -101,9 +119,6 @@ export function EditDishe() {
         return alert('Não foi possivel atualizar o prato')
       }
     }
-    
-    alert('Prato atualizado')
-    navigate('/')
   }
   
   useEffect(() => {
@@ -240,6 +255,7 @@ export function EditDishe() {
           <div>
             <Button 
             title='Excluir Prato'
+            onClick={handleDeleteDish}
             />
             <Button 
             title='Salvar alterações' 

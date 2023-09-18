@@ -20,8 +20,14 @@ export function Dishes({ data,  isAdmin, ...rest}) {
   const priceBD = data.price
   let formattedPrice = 0
   
-  function handleNavigateEditDishe() {
+  function handleNavigateEditDish() {
     navigate(`/edit/${data.id}`)
+  }
+
+  function handleNavigateDishPreview(event) {
+    if (event.target === event.currentTarget) {
+      navigate(`/dishpreview/${data.id}`)
+    }
   }
   
   function priceFormat() {
@@ -36,24 +42,25 @@ export function Dishes({ data,  isAdmin, ...rest}) {
   priceFormat()
 
   return (
-    <Container {...rest}>
-      {isAdmin ? <button onClick={handleNavigateEditDishe}><PiPencilSimple/></button> : <button><FiHeart/></button>}
+    <Container {...rest} onClick={handleNavigateDishPreview}>
+      {isAdmin ? <button onClick={handleNavigateEditDish}><PiPencilSimple/></button> : <button><FiHeart/></button>}
      
-     <div>
+      <div >
       <img
+      onClick={handleNavigateDishPreview}
        src={ImageURL} 
        alt="Imagem do prato" 
        />
 
      </div>
 
-      <h3>
+      <h3 onClick={handleNavigateDishPreview}>
         {data.name} &nbsp; &#x276F;
       </h3>
 
-      {isDesktop && <p>{data.description}</p>}
+      {isDesktop && <p onClick={handleNavigateDishPreview}>{data.description}</p>}
 
-      <h4>{formattedPrice}</h4>
+      <h4 onClick={handleNavigateDishPreview}>{formattedPrice}</h4>
 
       <div>
         {isAdmin ? <></> : 

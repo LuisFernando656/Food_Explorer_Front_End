@@ -1,13 +1,13 @@
 import {Routes , Route} from 'react-router-dom'
 
 import { Home } from '../pages/Home'
-import { DishePreview } from '../pages/DishePreview'
+import { DishPreview } from '../pages/DishPreview'
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/dishepreview/:id' element={<DishePreview/>}/>
+      <Route path='/dishpreview/:id' element={<DishPreview/>}/>
     </Routes>
   )
 }

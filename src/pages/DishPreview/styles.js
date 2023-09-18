@@ -118,6 +118,8 @@ export const Content = styled.div`
       width: clamp(20rem, 63vw, 26.3rem);
       height: clamp(20rem, 63vw, 26.3rem);
 
+      border-radius: 50%;
+
       margin-top: 1.6rem;
     }
   }
