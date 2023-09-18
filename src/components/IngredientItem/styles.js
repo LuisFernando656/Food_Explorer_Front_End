@@ -16,39 +16,42 @@ export const Container = styled.div`
   border-radius: .8rem;
   padding: 1.2rem 1.6rem;
 
+  
   > button {
     border: none;
     background: none;
   }
-
+  
   .button-delete {    
     color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
   }
-
+  
   .button-add {
     color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_500};
   }
-
+  
   .button-add, .button-delete {
     width: 1.4rem;
     height: 1.4rem;
-
+    
     display: flex;
     align-items: center;
-
+    
     svg {
       width: 1.4rem;
-    height: 1.4rem;
+      height: 1.4rem;
     }
-
+    
   }
   
   > input {
     width: 100%;
-
+    
     font-size: 1.6rem;
     color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
-
+    
+    cursor: ${({$isNew}) => $isNew ? 'auto' : 'default'};
+    
     background: transparent;
 
     border: none;

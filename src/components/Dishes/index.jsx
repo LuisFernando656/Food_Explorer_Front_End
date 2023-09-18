@@ -9,14 +9,20 @@ import { api } from "../../services/api";
 import {useResponsive} from '../../hooks/useResponsive'
 
 import { Button } from '../../components/Button'
-import { useEffect } from "react";
 
-export function Dishes({ data, isAdmin, ...rest}) {
+import { useNavigate } from "react-router-dom";
+
+export function Dishes({ data,  isAdmin, ...rest}) {
   const {isDesktop} = useResponsive()
+  const navigate = useNavigate()
 
   const ImageURL = `${api.defaults.baseURL}/files/${data.image}`
   const priceBD = data.price
   let formattedPrice = 0
+  
+  function handleNavigateEditDishe() {
+    navigate(`/edit/${data.id}`)
+  }
   
   function priceFormat() {
     formattedPrice = priceBD.toLocaleString('pt-BR', {
@@ -31,7 +37,7 @@ export function Dishes({ data, isAdmin, ...rest}) {
 
   return (
     <Container {...rest}>
-      {isAdmin ? <button><PiPencilSimple/></button> : <button><FiHeart/></button>}
+      {isAdmin ? <button onClick={handleNavigateEditDishe}><PiPencilSimple/></button> : <button><FiHeart/></button>}
      
      <div>
       <img

@@ -87,7 +87,8 @@ export const Container = styled.div`
 
     h3 {
       width: 25.6rem;
-
+      
+      text-align: center;
       font-size: 2.4rem;
       font-weight: 700;
       line-height: 140%;

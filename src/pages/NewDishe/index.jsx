@@ -20,7 +20,7 @@ import { useState, useEffect } from "react";
 import { PiUploadSimple } from 'react-icons/pi'
 
 export function NewDishe() {
-  const [disheImage, setDisheImage] = useState(null)
+  const [dishImage, setDishImage] = useState(null)
   const [name, setName] = useState('')
   const [category, setCategory] = useState(1)
   const [ingredients, setIngredients] = useState([])
@@ -37,9 +37,9 @@ export function NewDishe() {
   
   const navigate = useNavigate()
 
-  function handleChangeDisheImage(event){
+  function handleChangeDishImage(event){
     const file = event.target.files[0]
-    setDisheImage(file)
+    setDishImage(file)
   }  
   
   function handleAddIngredient() {
@@ -75,7 +75,7 @@ export function NewDishe() {
     }
 
     const formData = new FormData();
-    formData.append('image', disheImage); 
+    formData.append('image', dishImage); 
     formData.append('name', name)
     formData.append('description', description)
     formData.append('price', price)
@@ -121,7 +121,7 @@ export function NewDishe() {
   useEffect(() => {
     if(
       name && 
-      disheImage && 
+      dishImage && 
       category && 
       ingredients.length > 0 && 
       price && 
@@ -131,7 +131,7 @@ export function NewDishe() {
     }else {
       setButtonActive(true)
     }
-  }, [[name, disheImage, category, ingredients, price, description]])
+  }, [[name, dishImage, category, ingredients, price, description]])
 
   return (
     <Container>
@@ -144,13 +144,13 @@ export function NewDishe() {
           {isDesktop? <h3>Adicionar Prato</h3>  : <h3>Novo prato</h3>}
 
           <div>
-            <label htmlFor="disheImage">
+            <label htmlFor="dishImage">
               <span>imagem do prato</span>
               <div>
                 <input
                 type="file" 
-                id='disheImage' 
-                onChange={handleChangeDisheImage}
+                id='dishImage' 
+                onChange={handleChangeDishImage}
                 />
                 <PiUploadSimple/>
                 <span>Selecione imagem</span>

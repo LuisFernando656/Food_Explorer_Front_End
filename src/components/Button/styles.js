@@ -21,8 +21,14 @@ export const Container = styled.button`
   line-height: 2.4rem;
   color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
   border: none;
+  
+  transition: background-color .3s ease;
 
   &:disabled {
     background: ${({ theme }) => theme.COLORS.TINTS.TOMATO_400};
+  }
+
+  &:not(:disabled):hover {
+    background: ${({ theme }) => theme.COLORS.TINTS.TOMATO_200};
   }
 `

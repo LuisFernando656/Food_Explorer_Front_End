@@ -18,11 +18,13 @@ export function FoodSection({data, children}) {
   const handleSlidePrev = () => {
     if (swiper) {
       swiper.slidePrev();
+      swiper.slidePrev();
     }
   };
 
   const handleSlideNext = () => {
     if (swiper) {
+      swiper.slideNext();
       swiper.slideNext();
     }
   };

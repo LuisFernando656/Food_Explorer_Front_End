@@ -9,22 +9,148 @@ import { Textarea } from "../../components/TextArea";
 import { Button } from "../../components/Button"
 
 import { PiUploadSimple } from 'react-icons/pi'
+import { useEffect, useState } from 'react'
 
-import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useResponsive } from '../../hooks/useResponsive'
 import { useAuth } from "../../hooks/auth";
+import { currencyMask } from "../../hooks/useCurrencyMask";
+import { useFetchDish } from '../../hooks/useFetchDish';
 
 export function EditDishe() {
+  const [prefix, setPrefix] = useState('')
+  const [dishImage, setDishImage] = useState(null)
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState(0)
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredient, setNewIngredient] = useState('')
+  const [price, setPrice] = useState('')
+  const [description, setDescription] = useState('')
+  const [buttonActive, setButtonActive] = useState(true)
+  
   const {isDesktop} = useResponsive()
   const { user } = useAuth()
   const isAdmin = user.isAdmin
-
+  
   const navigate = useNavigate()
-
+  const params = useParams()
+  const {dishData, loading} = useFetchDish(params.id)
+  
   function handleBack() {
     navigate(-1)
   }
+  
+  function handleChangeDishImage(event){
+    const file = event.target.files[0]
+    setDishImage(file)
+  }  
+  
+  function handleAddIngredient() {
+    if(!newIngredient) {
+      return
+    }
+
+    const newIngredientObject = {
+      id: ingredients.length > 0 ? Math.max(...ingredients.map((ingredient) => ingredient.id)) + 1 : 1,
+      name: newIngredient,
+    };
+    
+    if(!ingredients.some((ingredient) => ingredient.name === newIngredient)) {
+      setIngredients(prevState => [...prevState, newIngredientObject])
+      setNewIngredient('')
+    }else {
+      alert('Esse ingrediente ja está adicionado')
+    }
+  }
+  
+  function handleRemoveIngredient(deleted) {
+    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
+  }
+  
+  async function handleUpdateDish() {
+    try{
+      if(dishImage) {
+        const formDataImage = new FormData();
+        formDataImage.append('image', dishImage); 
+        
+        await api.patch(`/dishes/image/${params.id}`, formDataImage)
+      }
+
+      const unformattedPrice = parseFloat(price.replace(/[^0-9,.-]/g, '').replace(',', '.'))
+
+      const formattedIngredients = ingredients.map(ingredient => ingredient.name)
+      const updated = {
+        name,
+        category_id: category,
+        price: unformattedPrice,
+        description,
+        ingredients: formattedIngredients
+      }
+      
+      const dishUpdated = Object.assign(dishData, updated)
+      
+      await api.put(`/dishes/${params.id}`, dishUpdated)
+      
+    }catch(error){
+      if(error.response){
+        return alert(error.response.data.message)
+      }else {
+        return alert('Não foi possivel atualizar o prato')
+      }
+    }
+    
+    alert('Prato atualizado')
+    navigate('/')
+  }
+  
+  useEffect(() => {
+    function DataInsert() {
+      if(!loading) {
+        const priceFormatted = dishData.price.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        })
+        
+        setPrice(priceFormatted)
+        setName(dishData.name)
+        setCategory(dishData.category_id)
+        setDescription(dishData.description)
+        setIngredients(dishData.ingredients)
+      }
+    }
+    
+    
+    function ButtonActive() {
+      if(!loading){
+        setButtonActive(false)
+      }
+    }
+    
+    ButtonActive()
+    DataInsert()
+  },[loading])
+  
+  useEffect(() => {
+    function PrefixChange() {
+      if(!loading) {
+        const priceFormatted = dishData.price.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        })
+  
+        if(!price) {
+          setPrice(priceFormatted)
+          setPrefix('')
+        }
+      }
+    }
+
+    
+    PrefixChange() 
+  },[price, loading])
 
   return (
     <Container>
@@ -37,12 +163,13 @@ export function EditDishe() {
           <h3>Editar Prato</h3>
 
           <div>
-            <label htmlFor="disheImage">
+            <label htmlFor="dishImage">
               <span>imagem do prato</span>
               <div>
                 <input
                 type="file" 
-                id='disheImage' 
+                id='dishImage' 
+                onChange={handleChangeDishImage}
                 />
                 <PiUploadSimple/>
                 <span>Selecione imagem</span>
@@ -53,12 +180,13 @@ export function EditDishe() {
             type='text' 
             label='Nome' 
             id='inputNome' 
-            placeholder='Value'
+            placeholder={name}
+            onChange={e => setName(e.target.value)}
             />
             
             <div>
             <label htmlFor="selectCategory">Categoria</label>
-            <select name="Categoria" id="selectCategory">
+            <select name="Categoria" value={category} id="selectCategory" onChange={e => setCategory(e.target.value)}>
               <option value='1'>Prato Principal</option>
               <option value='2'>Refeição</option>
               <option value='3'>Sobremesa</option>
@@ -71,25 +199,53 @@ export function EditDishe() {
             <div>
               <label htmlFor="ingredientInput">Ingredientes</label>
               <div>
-                <IngredientItem isNew={false} value='Pão Naanmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm'/>
-                <IngredientItem isNew={false} value='Pão Naan'/>
-                <IngredientItem isNew={false} value='Pão Naan'/>
-                <IngredientItem isNew={false} value='Pão Naan'/>
-                <IngredientItem isNew={true} placeholder='Adicionar'/>
+                {
+                  ingredients.map(ingredient => (
+                    <IngredientItem
+                    isNew={false} 
+                    value={ingredient.name} 
+                    key={ingredient.id} 
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                    />
+                  ))
+                }
+                <IngredientItem
+                isNew={true} 
+                placeholder='Adicionar'
+                value={newIngredient}
+                onChange={e => setNewIngredient(e.target.value)}
+                onClick={handleAddIngredient}
+                />
               </div>
             </div>
 
-            <Input label='Preço' id='priceInput' placeholder='R$ 00,00' type='number'/>
+            <Input 
+            label='Preço' 
+            id='priceInput' 
+            placeholder={price}  
+            type='text'
+            prefix={prefix}
+            onKeyUp={(e) => currencyMask(e.target, setPrice, setPrefix)}/>
           </div>
 
           <div>
             <label htmlFor="textAreaInput">Descrição</label>
-            <Textarea id='textAreaInput' placeholder='Value'/>
+            <Textarea 
+            id='textAreaInput' 
+            placeholder={description}
+            onChange={e => setDescription(e.target.value)}
+            />
           </div>
 
           <div>
-            <Button title='Excluir Prato'/>
-            <Button title='Salvar alterações'/>
+            <Button 
+            title='Excluir Prato'
+            />
+            <Button 
+            title='Salvar alterações' 
+            loading={buttonActive}
+            onClick={handleUpdateDish}
+            />
           </div>
         
         </Form>
