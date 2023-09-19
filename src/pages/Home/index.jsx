@@ -19,17 +19,22 @@ import { useAuth } from "../../hooks/auth";
 import introImageMobile from '../../assets/introImageMobile.png'
 import introImageDesktop from '../../assets/IntroImageDesktop.png'
 
-export function Home( data) {
+export function Home() {
   const [dishes, setDishes] = useState([])
+  const [search, setSearch] = useState('')
   const [categorys, setCategorys] = useState([])
 
   const { isDesktop } = useResponsive()
   const { user } = useAuth()
   const isAdmin = user.isAdmin
+
+  const searchUpdate = (newSearch) => {
+    setSearch(newSearch)
+  }
   
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?name=${''}`)
+      const response = await api.get(`/dishes?search=${search}`)
       setDishes(response.data)
     }
 
@@ -40,11 +45,11 @@ export function Home( data) {
 
     fetchDishes()
     fetchCategory()
-  },[])
+  },[search])
 
   return (
     <Container>
-      {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
+      {isDesktop ? <HeaderDesktop isAdmin={isAdmin} onSearchChange={searchUpdate}/> : <Header isAdmin={isAdmin}/>}
       <main>
         <IntroDescription>
           {isDesktop ? <img src={introImageDesktop} alt="Imagem de introdução a Home Page" />  : <img src={introImageMobile} alt="Imagem de introdução a Home Page" />}

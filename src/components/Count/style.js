@@ -9,15 +9,14 @@ export const Container = styled.div`
   gap: 1.4rem;
 
   > div {
-    width: 1.5rem;
-
-    input {
-      cursor: initial;
-      display: block;
-
+    width: 2.4rem;
+    
+    span{
       border: none;
       background: transparent;
       outline: none;
+      
+      text-align: center;
 
       color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_300};
       font-size: 1.6rem;

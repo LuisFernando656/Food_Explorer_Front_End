@@ -9,10 +9,16 @@ import { PiReceipt } from 'react-icons/pi'
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { useState } from "react";
 
-export function HeaderDesktop({isAdmin}) {
+export function HeaderDesktop({isAdmin, onSearchChange}) {
   const { signOut } = useAuth()
   const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    const newSearch = e.target.value
+    onSearchChange(newSearch)
+  }
 
   function handleLogOut() {
     const confirm = window.confirm('Tem certeza que deseja sair ?')
@@ -33,8 +39,15 @@ export function HeaderDesktop({isAdmin}) {
 
   return (
     <Container>
-      <Logo isAdmin={isAdmin} onClick={handleNavHome}/>
-      <Input icon={FiSearch} placeholder='Busque por pratos ou ingredientes'/>
+      <Logo
+      isAdmin={isAdmin} 
+      onClick={handleNavHome}
+      />
+      <Input 
+      icon={FiSearch}
+      placeholder='Busque por pratos ou ingredientes' 
+      onChange={handleChange}
+      />
       {isAdmin? <Button onClick={handleNavNew} title='Novo prato'/>  : <Button icon={PiReceipt} title='Pedidos (0)'/>}
       <button onClick={handleLogOut}><FiLogOut/></button>
     </Container>

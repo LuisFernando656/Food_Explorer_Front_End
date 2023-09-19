@@ -68,9 +68,10 @@ export const Container = styled.div`
     width: 100%;
 
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 1.6rem;
-
+    
     > button:nth-child(2) {
       padding: 1.2rem 2.4rem;
     }
@@ -115,7 +116,7 @@ export const Container = styled.div`
       display: flex;
       gap: 1.6rem;
 
-      input {
+      span {
         font-size: 2rem;
         font-weight: 700;
         line-height: 160%;

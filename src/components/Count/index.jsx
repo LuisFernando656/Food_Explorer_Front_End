@@ -30,7 +30,7 @@ export function Count(props) {
         <AiOutlineMinus/>
       </button>
       <div>
-        <input type='number' maxLength='2' value={formattedValue} readOnly/>
+        <span>{formattedValue}</span>
       </div>
       <button onClick={handleSumValue}>
         <AiOutlinePlus/>

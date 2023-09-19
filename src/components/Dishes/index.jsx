@@ -1,9 +1,8 @@
 import { Container } from "./styles";
-import { FiHeart } from 'react-icons/fi'
+import * as HiIcons from 'react-icons/hi'
 import { PiPencilSimple } from 'react-icons/pi'
 import { Count } from "../Count";
 
-import testeImg from '../../assets/teste.svg'
 import { api } from "../../services/api";
 
 import {useResponsive} from '../../hooks/useResponsive'
@@ -15,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Dishes({ data,  isAdmin, ...rest}) {
   const [value, setValue] = useState(1)
+  const [fav, setFav] = useState(false)
 
   const {isDesktop} = useResponsive()
   const navigate = useNavigate()
@@ -24,9 +24,9 @@ export function Dishes({ data,  isAdmin, ...rest}) {
   const finalPrice = priceBD * value
   let formattedPrice = 0
 
-  const receiveValue = (value) => {
-    setValue(value)
-  }
+  const receiveValue = (value) => setValue(value)
+  
+  const toggleFav = () => setFav(!fav)
   
   function handleNavigateEditDish() {
     navigate(`/edit/${data.id}`)
@@ -51,7 +51,7 @@ export function Dishes({ data,  isAdmin, ...rest}) {
 
   return (
     <Container {...rest} onClick={handleNavigateDishPreview}>
-      {isAdmin ? <button onClick={handleNavigateEditDish}><PiPencilSimple/></button> : <button><FiHeart/></button>}
+      {isAdmin ? <button onClick={handleNavigateEditDish}><PiPencilSimple/></button> : <button onClick={toggleFav}>{fav ? <HiIcons.HiHeart/> : <HiIcons.HiOutlineHeart/>}</button>}
      
       <div >
       <img

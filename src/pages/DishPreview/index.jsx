@@ -15,7 +15,6 @@ import { useAuth } from "../../hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetchDish } from '../../hooks/useFetchDish';
 
-import testeImg from '../../assets/teste.svg'
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 

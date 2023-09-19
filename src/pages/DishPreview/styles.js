@@ -84,7 +84,7 @@ export const Container = styled.div`
                 }
               }
 
-              input {
+              span {
                 font-size: 2rem;
               }
             }
@@ -161,7 +161,7 @@ export const Content = styled.div`
       gap: 1.6rem;
 
       > div:nth-child(1) {
-        input {
+        span {
           font-size: 2.2rem;
           font-weight: 700;
           line-height: 160%;
