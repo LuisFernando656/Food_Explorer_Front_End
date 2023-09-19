@@ -90,7 +90,7 @@ export const Container = styled.div`
             }
 
              > button {
-              width: 16.2rem;
+              width: max-content;
 
               font-size: 1.4rem;
               line-height: 2.4rem;

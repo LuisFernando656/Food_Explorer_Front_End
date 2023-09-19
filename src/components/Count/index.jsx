@@ -3,22 +3,23 @@ import { useState } from 'react'
 
 import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai'
 
-export function Count() {
+export function Count(props) {
   const [value, setValue] = useState(1)
-  const [valueFinal, setValueFinal] = useState(0)
 
   function handleSubValue() {
     if(value > 1) {
       setValue(value -1)
+      props.handleSubValue(value - 1 )
     }
   }
 
   function handleSumValue() {
-    if(value >= 100) {
+    if(value >= 99) {
       return
     }
 
     setValue(value +1)
+    props.handleSumValue(value + 1)
   }
 
   const formattedValue = value < 10 ? `0${value}` : value

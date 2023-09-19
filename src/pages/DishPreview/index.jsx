@@ -22,6 +22,7 @@ import { api } from "../../services/api";
 export function DishPreview() {
   const [price, setPrice] = useState('')
   const [imagePreview, setImagePreview] = useState()
+  const [value, setValue] = useState(1)
 
   const {isDesktop} = useResponsive()
   const { user } = useAuth()
@@ -34,6 +35,10 @@ export function DishPreview() {
     navigate(-1)
   }
 
+  const receiveValue = (value) => {
+    setValue(value)
+  }
+
   function handleNavigateEditDish() {
     navigate(`/edit/${dishData.id}`)
   }
@@ -41,8 +46,10 @@ export function DishPreview() {
   useEffect(() => {
     function dataInsert() {
       if(!loading) {
+
+        const finalPrice = dishData.price * value
   
-        const priceFormatted = dishData.price.toLocaleString('pt-BR', {
+        const priceFormatted = finalPrice.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         })
@@ -55,7 +62,7 @@ export function DishPreview() {
     }
 
     dataInsert()
-  },[loading])
+  },[loading, value])
 
   return (
     <Container>
@@ -81,7 +88,7 @@ export function DishPreview() {
                 </div>
               }
 
-            {isAdmin ? <Button title='Editar Prato' onClick={handleNavigateEditDish}/> : <div> <Count/> {isDesktop? <Button title={`incluir ∙ ${price}`} />  : <Button icon={PiReceipt} title={`pedir ∙ ${price}`} />}  </div>}
+            {isAdmin ? <Button title='Editar Prato' onClick={handleNavigateEditDish}/> : <div> <Count handleSubValue={receiveValue} handleSumValue={receiveValue}/> {isDesktop? <Button title={`incluir ∙ ${price}`} />  : <Button icon={PiReceipt} title={`pedir ∙ ${price}`} />}  </div>}
          </div>
         </Content>
         } 

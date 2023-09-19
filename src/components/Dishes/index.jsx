@@ -7,18 +7,26 @@ import testeImg from '../../assets/teste.svg'
 import { api } from "../../services/api";
 
 import {useResponsive} from '../../hooks/useResponsive'
+import { useState } from "react";
 
 import { Button } from '../../components/Button'
 
 import { useNavigate } from "react-router-dom";
 
 export function Dishes({ data,  isAdmin, ...rest}) {
+  const [value, setValue] = useState(1)
+
   const {isDesktop} = useResponsive()
   const navigate = useNavigate()
 
   const ImageURL = `${api.defaults.baseURL}/files/${data.image}`
   const priceBD = data.price
+  const finalPrice = priceBD * value
   let formattedPrice = 0
+
+  const receiveValue = (value) => {
+    setValue(value)
+  }
   
   function handleNavigateEditDish() {
     navigate(`/edit/${data.id}`)
@@ -31,7 +39,7 @@ export function Dishes({ data,  isAdmin, ...rest}) {
   }
   
   function priceFormat() {
-    formattedPrice = priceBD.toLocaleString('pt-BR', {
+    formattedPrice = finalPrice.toLocaleString('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     });
@@ -64,7 +72,7 @@ export function Dishes({ data,  isAdmin, ...rest}) {
 
       <div>
         {isAdmin ? <></> : 
-        <Count/>
+        <Count handleSubValue={receiveValue} handleSumValue={receiveValue}/>
         }
 
         {isAdmin ? <></> : <Button title='incluir'/> }

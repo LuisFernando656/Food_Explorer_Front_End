@@ -12,6 +12,8 @@ export const Container = styled.div`
 
   padding: 2.4rem;
 
+  cursor: pointer;
+
   position: relative;
 
   background: ${({ theme }) => theme.COLORS.DARK.DARK_200};
