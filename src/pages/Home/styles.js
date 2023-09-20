@@ -138,3 +138,20 @@ export const IntroDescription = styled.div`
     }
   }
 `
+
+export const EmptyDishesMessage = styled.div`
+  padding: 2rem;
+  margin-inline: 1.6rem;
+  border-radius: .3rem;
+
+  font-size: 1.2rem;
+
+  text-align: center;
+
+  background: ${({ theme }) => theme.COLORS.GRADIENT.GRADIENT_200};
+
+  @media screen and (min-width: 769px) {
+    margin: 0;
+    font-size: 2rem;
+  }
+`

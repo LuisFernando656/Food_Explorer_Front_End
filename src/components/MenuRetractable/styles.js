@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 
   .menu-retractable.open {
-  left: 0; /* Quando o menu estiver aberto, ele será trazido para a posição left: 0 */
+  left: 0
 }
 `
 

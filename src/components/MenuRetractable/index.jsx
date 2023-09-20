@@ -3,15 +3,18 @@ import { FiX, FiSearch } from 'react-icons/fi'
 import { Input } from "../input";
 import { ReservedRights } from '../ReservedRights'
 
-import { useNavigate } from "react-router-dom";
-
-import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/search";
+
+import { useEffect, useState } from "react";
 
 export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
+  const { setSearch } = useSearch();
   const {signOut} = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   function handleLogOut() {
     const confirm = window.confirm('Tem certeza que deseja sair ?')
@@ -19,6 +22,20 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
     if(confirm) {
       navigate('/')
       signOut()
+    }
+  }
+
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleKeySearch = (e) => {
+    if (e.key === 'Enter') {
+      setSearch(e.target.value)
+
+      setMenuOpen(false)
+
+      navigate('/')
     }
   }
 
@@ -32,11 +49,11 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
 
   useEffect(() => {
     if (!menuOpen) {
-      document.body.classList.remove("menu-open");
+      document.body.classList.remove("menu-open")
     } else {
-      document.body.classList.add("menu-open");
+      document.body.classList.add("menu-open")
     }
-  }, [menuOpen]);
+  }, [menuOpen])
 
   return (
     <Container>
@@ -48,7 +65,13 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
           <h2>Menu</h2>
         </MenuHeader>
         <MenuContent>
-          <Input type="search" placeholder='Busque por pratos ou ingredientes' icon={FiSearch} />
+          <Input
+          type="search" 
+          placeholder='Busque por pratos ou ingredientes' 
+          icon={FiSearch} 
+          onChange={handleChange}
+          onKeyPress={handleKeySearch}
+          />
           <div>
           {isAdmin ? <button onClick={handleNewDishe}>Novo Prato</button> : null}
           <button onClick={handleLogOut}>Sair</button>

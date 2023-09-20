@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { AuthProvider } from './hooks/auth'
+import { SearchProvider } from './hooks/search'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './styles/global'
 import theme from './styles/theme'
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyle/>
       <AuthProvider>
-        <Routes/>
+        <SearchProvider>
+          <Routes/>
+        </SearchProvider>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,

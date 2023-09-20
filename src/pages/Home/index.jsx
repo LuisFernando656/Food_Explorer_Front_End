@@ -1,4 +1,4 @@
-import { Container, IntroDescription } from "./styles";
+import { Container, IntroDescription, EmptyDishesMessage } from "./styles";
 import { Header } from '../../components/Header'
 import { HeaderDesktop } from "../../components/HeaderDesktop";
 import { ReservedRights } from '../../components/ReservedRights'
@@ -15,41 +15,45 @@ import { api } from '../../services/api'
 
 import { useResponsive } from "../../hooks/useResponsive";
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/search";
 
 import introImageMobile from '../../assets/introImageMobile.png'
 import introImageDesktop from '../../assets/IntroImageDesktop.png'
 
 export function Home() {
-  const [dishes, setDishes] = useState([])
-  const [search, setSearch] = useState('')
-  const [categorys, setCategorys] = useState([])
+  const [ dishes, setDishes ] = useState([])
+  const { search , setSearch } = useSearch()
+  const [ categories, setCategorys ] = useState([])
 
   const { isDesktop } = useResponsive()
   const { user } = useAuth()
   const isAdmin = user.isAdmin
-
-  const searchUpdate = (newSearch) => {
-    setSearch(newSearch)
-  }
   
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes?search=${search}`)
-      setDishes(response.data)
+
+      const fetchedDishes = response.data
+
+      setDishes(fetchedDishes)
     }
 
     async function fetchCategory() {
       const response = await api.get('/category')
       setCategorys(response.data)
     }
-
+    
     fetchDishes()
     fetchCategory()
   },[search])
 
+  useEffect(() => {
+    setSearch('')
+  },[])
+
   return (
     <Container>
-      {isDesktop ? <HeaderDesktop isAdmin={isAdmin} onSearchChange={searchUpdate}/> : <Header isAdmin={isAdmin}/>}
+      {isDesktop ? <HeaderDesktop isAdmin={isAdmin}/> : <Header isAdmin={isAdmin}/>}
       <main>
         <IntroDescription>
           {isDesktop ? <img src={introImageDesktop} alt="Imagem de introdução a Home Page" />  : <img src={introImageMobile} alt="Imagem de introdução a Home Page" />}
@@ -63,7 +67,7 @@ export function Home() {
         
         <div>
           {
-            categorys.map(category => {
+            categories.map(category => {
               const categoryDishes = dishes.filter(dishe => dishe.category_id === category.id) 
 
               if(categoryDishes.length > 0) {
@@ -84,8 +88,21 @@ export function Home() {
                 )
               }
             })
-          }
+          } 
+          
         </div>
+        
+          {
+            dishes.length === 0 && (
+              <div>
+                {isAdmin ? (
+                  <EmptyDishesMessage>Nenhum prato encontrado, adicione um novo ou tente outra consulta</EmptyDishesMessage>
+                ) : (
+                  <EmptyDishesMessage>Nenhum prato encontrado, tente outra consulta</EmptyDishesMessage>
+                )}
+              </div>
+            )
+          }
       </main>
 
       <ReservedRights/>

@@ -6,18 +6,28 @@ import { Button } from "../Button";
 import { FiSearch, FiLogOut } from 'react-icons/fi'
 import { PiReceipt } from 'react-icons/pi'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
-import { useState } from "react";
+import { useSearch } from "../../hooks/search";
+import { useEffect, useState } from "react";
 
-export function HeaderDesktop({isAdmin, onSearchChange}) {
+export function HeaderDesktop({isAdmin}) {
+  const { setSearch } = useSearch();
   const { signOut } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleChange = (e) => {
-    const newSearch = e.target.value
-    onSearchChange(newSearch)
+    setSearch(e.target.value)
+  }
+
+  const handleKeySearch = (e) => {
+    if (e.key === 'Enter' && location.pathname !== '/') {
+      setSearch(e.target.value)
+
+      navigate('/')
+    }
   }
 
   function handleLogOut() {
@@ -29,13 +39,8 @@ export function HeaderDesktop({isAdmin, onSearchChange}) {
     }
   }
 
-  function handleNavNew() {
-    navigate('/new')
-  }
-
-  function handleNavHome() {
-    navigate('/')
-  }
+  const handleNavNew = () => navigate('/new')
+  const handleNavHome = () => navigate('/')
 
   return (
     <Container>
@@ -47,6 +52,7 @@ export function HeaderDesktop({isAdmin, onSearchChange}) {
       icon={FiSearch}
       placeholder='Busque por pratos ou ingredientes' 
       onChange={handleChange}
+      onKeyPress={handleKeySearch}
       />
       {isAdmin? <Button onClick={handleNavNew} title='Novo prato'/>  : <Button icon={PiReceipt} title='Pedidos (0)'/>}
       <button onClick={handleLogOut}><FiLogOut/></button>
