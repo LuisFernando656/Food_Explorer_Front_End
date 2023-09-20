@@ -61,6 +61,18 @@ export const Container = styled.div`
 
             color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
           }
+
+          > div {
+            > div:focus-within {
+              outline: 1px solid ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
+            }
+          }
+
+          > div {
+            > div {
+              border-radius: .8rem;
+            }
+          }
         }
       }
     }
@@ -76,7 +88,7 @@ export const Form = styled.form`
 
   label {
     padding-bottom: 0.8rem;
-  }  
+  }
 `
 
 export const Content = styled.div`
