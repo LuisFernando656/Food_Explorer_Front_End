@@ -58,18 +58,31 @@ export const Container = styled.div`
               background-color: ${({ theme }) => theme.COLORS.DARK.DARK_800};
             }
           }
-        }
 
+        }
+        
         > div:nth-child(3) {
           flex-direction: row;
           align-items: flex-end;
-
+          
           > div:nth-child(1) {
             width: 75%;
           }
-
+          
           > div:nth-child(2) {
             width: 25%;
+          }
+        }
+        
+        > div:nth-child(5) {
+          align-self: self-end;
+
+          button:first-child {
+            width: 13.5rem;
+          }
+
+          button:nth-child(2) {
+            width: 17.2rem;
           }
         }
 
@@ -226,19 +239,18 @@ export const Form = styled.form`
   > div:nth-child(5) {
     display: flex;
     gap: 3.2rem;
-    align-self: self-end;
 
     > button {
       padding-inline: 2.4rem;
     }
 
     button:first-child {
-      width: 13.5rem;
+      width: 48%;
       background-color: ${({ theme }) => theme.COLORS.DARK.DARK_800};
     }
 
     button:nth-child(2) {
-      width: 17.2rem;
+      width: 52%;
     }
   }
 `

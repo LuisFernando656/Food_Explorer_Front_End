@@ -71,9 +71,13 @@ export function EditDish() {
   }
 
   async function handleDeleteDish() {
-    await api.delete(`/dishes/${params.id}`)
-    alert('Prato excluido')
-    navigate('/')
+    const confirm = window.confirm('Deseja realmente excluir o prato?')
+
+    if(confirm){
+      await api.delete(`/dishes/${params.id}`)
+      alert('Prato excluido')
+      navigate('/')
+    }
   }
   
   async function handleUpdateDish() {
