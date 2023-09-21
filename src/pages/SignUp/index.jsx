@@ -19,8 +19,14 @@ export function SignUp() {
   const { isDesktop } = useResponsive()
 
   async function handleSignUp() {
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g
+
     if(!name || !email || !password) {
       return alert('Preencha todos os campos!')
+    }
+
+    if(!emailRegex.test(email)) {
+      return alert('Email inválido')
     }
 
     try{       
