@@ -15,6 +15,7 @@ export function Header({isAdmin}) {
 
   return (
    <Container>  
+    <div>
     <MenuButton onClick={toggleMenu}>
       <FiMenu/>
     </MenuButton>
@@ -22,6 +23,8 @@ export function Header({isAdmin}) {
     <Logo isAdmin={isAdmin}/>
     
     {isAdmin ? <div></div> :  <button>  <img src={Requestsicon} alt="Icone de Pedidos" /> </button>} 
+
+    </div>
     <MenuRetractable isAdmin={isAdmin} setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>
    </Container>
   )

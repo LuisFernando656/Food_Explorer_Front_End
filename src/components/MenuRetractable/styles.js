@@ -7,29 +7,29 @@ export const Container = styled.div`
     left: -100%;
     width: 100%;
     height: 100%;
-    
+
     z-index: 1;
 
     transition: left 0.3s ease;
 
-    background-color: ${({theme}) => theme.COLORS.DARK.DARK_400};
+    background-color: ${({ theme }) => theme.COLORS.DARK.DARK_400};
   }
 
   .menu-retractable.open {
-  left: 0
-}
+    left: 0;
+  }
 `
 
 export const MenuHeader = styled.div`
   width: 100%;
   height: 11.4rem;
-  
+
   display: flex;
   align-items: center;
   justify-content: left;
   gap: 1.6rem;
 
-  background-color: ${({theme}) => theme.COLORS.DARK.DARK_700};
+  background-color: ${({ theme }) => theme.COLORS.DARK.DARK_700};
 
   padding: 6rem 2.8rem 2.4rem;
 
@@ -42,7 +42,7 @@ export const MenuHeader = styled.div`
   }
 
   > button {
-    color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
     background: transparent;
     border: none;
 
@@ -59,10 +59,13 @@ export const MenuHeader = styled.div`
 export const MenuContent = styled.div`
   padding: 3.6rem 2.4rem 1.3rem;
 
-  input {
-    border-radius: .5rem;
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
   }
-  
+
   > div:nth-child(2) {
     display: flex;
     flex-direction: column;
@@ -74,10 +77,10 @@ export const MenuContent = styled.div`
 
       font-size: 2.4rem;
       font-weight: 300;
-      color: ${({theme}) => theme.COLORS.LIGHT.LIGHT_300};
+      color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_300};
       line-height: 140%;
 
-      border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK.DARK_1000};
+      border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK.DARK_1000};
     }
 
     > button {
@@ -86,8 +89,7 @@ export const MenuContent = styled.div`
 
       display: flex;
 
-      border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK.DARK_1000};
+      border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK.DARK_1000};
     }
   }
-
 `

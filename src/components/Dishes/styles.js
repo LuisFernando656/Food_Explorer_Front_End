@@ -71,7 +71,7 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 1.6rem;
-    
+
     > button:nth-child(2) {
       padding: 1.2rem 2.4rem;
     }
@@ -90,7 +90,7 @@ export const Container = styled.div`
 
     h3 {
       width: 25.6rem;
-      
+
       text-align: center;
       font-size: 2.4rem;
       font-weight: 700;
@@ -98,13 +98,18 @@ export const Container = styled.div`
     }
 
     p {
-      width: 25.6rem;
+      width: 23rem;
 
       font-family: 'Roboto', sans-serif;
       font-size: 1.4rem;
       line-height: 160%;
       font-weight: 400;
       text-align: center;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     h4 {
@@ -123,5 +128,4 @@ export const Container = styled.div`
       }
     }
   }
-  
 `

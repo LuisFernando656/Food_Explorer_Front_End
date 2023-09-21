@@ -49,6 +49,7 @@ export function HeaderDesktop({isAdmin}) {
       onClick={handleNavHome}
       />
       <Input 
+      type='search'
       icon={FiSearch}
       placeholder='Busque por pratos ou ingredientes' 
       onChange={handleChange}

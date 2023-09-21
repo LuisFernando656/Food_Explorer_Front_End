@@ -3,6 +3,8 @@ import * as HiIcons from 'react-icons/hi'
 import { PiPencilSimple } from 'react-icons/pi'
 import { Count } from "../Count";
 
+import TextTruncate from "react-text-truncate";
+
 import { api } from "../../services/api";
 
 import {useResponsive} from '../../hooks/useResponsive'

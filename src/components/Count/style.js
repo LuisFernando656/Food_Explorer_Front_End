@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 10rem;
+  width: max-content;
   display: flex;
   align-items: center;
-  justify-content: space-around;
 
   gap: 1.4rem;
 
   > div {
-    width: 2.4rem;
+    width: 100%;
     
     span{
       border: none;

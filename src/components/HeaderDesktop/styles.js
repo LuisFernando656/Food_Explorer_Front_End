@@ -30,18 +30,16 @@ export const Container = styled.div`
         font-size: 2.4rem;
         white-space: nowrap;
       }
-      
-      p{
+
+      p {
         text-align: end;
       }
     }
 
-    
     svg {
       width: 3rem;
       height: 3rem;
     }
-    
   }
 
   > div:nth-child(2) {
@@ -57,6 +55,13 @@ export const Container = styled.div`
       input {
         width: 70%;
       }
+
+      input[type='search']::-webkit-search-decoration,
+      input[type='search']::-webkit-search-cancel-button,
+      input[type='search']::-webkit-search-results-button,
+      input[type='search']::-webkit-search-results-decoration {
+        display: none;
+      }
     }
   }
 
@@ -64,12 +69,13 @@ export const Container = styled.div`
     width: 18%;
 
     white-space: nowrap;
+    font-size: clamp(1.15rem, 1vw, 1.4rem);
 
     padding: 1.2rem;
 
-    svg {
-      min-width: 3.2rem;
-      min-height: 3.2rem;
+    > svg {
+      width: 3.2rem;
+      height: 3.2rem;
     }
   }
 
@@ -86,9 +92,9 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.LIGHT.LIGHT_100};
 
-    svg {
-      width: 3.2rem;
-      height: 3.2rem;
+    > svg {
+      min-width: 3.2rem;
+      min-height: 3.2rem;
     }
   }
 `
