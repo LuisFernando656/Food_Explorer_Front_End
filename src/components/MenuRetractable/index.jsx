@@ -3,7 +3,7 @@ import { FiX, FiSearch } from 'react-icons/fi'
 import { Input } from "../input";
 import { ReservedRights } from '../ReservedRights'
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/search";
@@ -14,7 +14,6 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
   const { setSearch } = useSearch();
   const {signOut} = useAuth()
   const navigate = useNavigate()
-  const location = useLocation()
 
   function handleLogOut() {
     const confirm = window.confirm('Tem certeza que deseja sair ?')
@@ -50,8 +49,10 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
   useEffect(() => {
     if (!menuOpen) {
       document.body.classList.remove("menu-open")
+      document.body.style.overflow = 'auto'
     } else {
       document.body.classList.add("menu-open")
+      document.body.style.overflow = 'hidden'
     }
   }, [menuOpen])
 
