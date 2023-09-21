@@ -49,8 +49,10 @@ export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
   useEffect(() => {
     if (!menuOpen) {
       document.body.classList.remove("menu-open")
+      document.body.style.overflow = 'auto'
     } else {
       document.body.classList.add("menu-open")
+      document.body.style.overflow = 'hidden'
     }
   }, [menuOpen])
 
