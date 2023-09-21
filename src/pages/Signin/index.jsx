@@ -5,6 +5,8 @@ import { Button } from '../../components/Button'
 
 import { useState, useEffect } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { useResponsive } from '../../hooks/useResponsive'
 import { useAuth } from '../../hooks/auth'
 
@@ -14,9 +16,14 @@ export function SignIn() {
   
   const { signIn } = useAuth()
   const { isDesktop } = useResponsive()
+  const navigate = useNavigate()
 
   function handleSignIn() {
     signIn({ email, password})
+  }
+
+  function handleNavigateSignUp() {
+    navigate('/register')
   }
 
   return (
@@ -47,7 +54,7 @@ export function SignIn() {
             onClick={handleSignIn}
             />
           </Form>
-          <a href="/register">Criar uma conta</a>
+          <a onClick={handleNavigateSignUp}>Criar uma conta</a>
         </Content>
       </main>
     </Container>

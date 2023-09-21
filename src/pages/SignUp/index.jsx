@@ -36,6 +36,10 @@ export function SignUp() {
   navigate('/')
   }
 
+  function handleNavigateSignIn() {
+    navigate('/')
+  }
+
   return (
     <Container>
       <main>
@@ -71,7 +75,7 @@ export function SignUp() {
             onClick={handleSignUp}
             />
           </Form>
-          <a href="/">Já tenho uma conta</a>
+          <a onClick={handleNavigateSignIn}>Já tenho uma conta</a>
         </Content>
       </main>
     </Container>
