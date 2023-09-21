@@ -3,18 +3,17 @@ import { FiX, FiSearch } from 'react-icons/fi'
 import { Input } from "../input";
 import { ReservedRights } from '../ReservedRights'
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/search";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function MenuRetractable({setMenuOpen, isAdmin, menuOpen}) {
   const { setSearch } = useSearch();
   const {signOut} = useAuth()
   const navigate = useNavigate()
-  const location = useLocation()
 
   function handleLogOut() {
     const confirm = window.confirm('Tem certeza que deseja sair ?')
