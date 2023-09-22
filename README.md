@@ -1,3 +1,5 @@
+![Food-Explorer-Preview](https://github.com/LuisFernando656/Food_Explorer_Front_End/assets/106917465/217605ec-3bbb-4f5f-842f-52c23e78b8e8)
+
 # Food-Explorer-Front-End
 
 > Status: Finished
